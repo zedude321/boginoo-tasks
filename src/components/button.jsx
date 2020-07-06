@@ -21,9 +21,9 @@ export const Button = (props) => {
         - бусад дамжуулсан others props ийг button элемэнт дээр нэмж өгөх ингэснээр onClick event өөр ямар хамаагүй props-ийг нэмж ашиглах боломжтой болно
 
         HINT: className={`btn ${className} ${disabled && 'disabled'}`}
-      
+       className="b-primary c-default br-primary-0 h-5 brr fs-3-3 pa-4-2"
     */
     return (
-        <button>{children}</button>
+        <button className={`input ${className} pointer`} {...others}>{children}</button>
     );
 };

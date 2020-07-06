@@ -2,6 +2,7 @@
 @import './components.scss';
 @import './flex.scss';
 @import './typograph.scss';
+@import './variables.scss';
 
 @function pow($base, $exp) {
     $res: 1;
@@ -20,35 +21,49 @@
         background-color: $color;
     }
 
-    @for $i from 1 through 10 {
+    @for $i from 0 through 10 {
         .br-#{$name}-#{$i} {
             border: solid $color $i + px;
         }
     }
 }
 
-@for $i from 1 through 10 {
-    .h-#{$i} {
-        height: pow(2, $i) + px;
-    }
-    .w-#{$i} {
-        width: pow(2, $i) + px;
-    }
-    .pa-#{$i} {
-        padding: pow(2, $i) + px;
-    }
-    .ph-#{$i} {
-        padding-left: pow(2, $i) + px;
-        padding-right: pow(2, $i) + px;
-    }
-    .ma-#{$i} {
-        margin: pow(2, $i) + px;
-    }
-    .mt-#{$i} {
-        margin-top: pow(2, $i) + px;
-    }
-    .ml-#{$i} {
-        margin-left: pow(2, $i) + px;
+@for $i from 0 through 10 {
+    @for $o from 0 through 10 {
+        .h-#{$i}-#{$o} {
+            height: pow($i, $o) + px;
+        }
+        .w-#{$i}-#{$o} {
+            width: pow($i, $o) + px;
+        }
+        .fs-#{$i}-#{$o} {
+            font-size: pow($i, $o) + px;
+        }
+        .pa-#{$i}-#{$o} {
+            padding: pow($i, $o) + px;
+        }
+        .ph-#{$i}-#{$o} {
+            padding-left: pow($i, $o) + px;
+            padding-right: pow($i, $o) + px;
+        }
+        .ma-#{$i}-#{$o} {
+            margin: pow($i, $o) + px;
+        }
+        .mt-#{$i}-#{$o} {
+            margin-top: pow($i, $o) + px;
+        }
+        .ml-#{$i}-#{$o} {
+            margin-left: pow($i, $o) + px;
+        }
+        .mr-#{$i}-#{$o} {
+            margin-right: pow($i, $o) + px;
+        }
+        .mb-#{$i}-#{$o} {
+            margin-bottom: pow($i, $o) + px;
+        }
+        .out-#{$i} {
+            outline: solid $i;
+        }
     }
 }
 
@@ -64,6 +79,40 @@ body {
     height: 100%;
 }
 
+.brr {
+    border-radius: 100px;
+    outline: none;
+}
+
+.brr:active {
+    background-color: #008060;
+}
+
+.shadow {   
+    border: 1px solid #F0F0F0;
+}
+
+.center {
+    display: flex;
+    align-self: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pointer {
+    cursor: pointer;
+}
 
 // ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
 * {
