@@ -1,5 +1,6 @@
 import React from 'react';
 import { HomeDefault, Login, SignUp, Shortened } from './pages';
+import {AupProvider} from './providers/aup';
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,22 +11,24 @@ import './style/main.scss';
 
 const App = () => {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <HomeDefault />
-                </Route>
-                <Route path="/login">
-                    <Login />
-                </Route>
-                <Route path="/signup">
+        <AupProvider>
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                        <HomeDefault />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/signup">
                     <SignUp />
-                </Route>
-                <Route path="/shortened">
-                    <Shortened />
-                </Route>
-            </Switch>
-        </Router>
+                    </Route>
+                    <Route path="/shortened">
+                        <Shortened />
+                    </Route>
+                </Switch>
+            </Router>
+        </AupProvider>
     )
 }
 

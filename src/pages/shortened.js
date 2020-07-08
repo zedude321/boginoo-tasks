@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket } from '../components/';
 
 export const Shortened = () => {
@@ -11,7 +11,7 @@ export const Shortened = () => {
                     <IconEndBracket />
                 </div>
                 <div className='font-lobster c-primary fs-8-2 center'>
-                    Shortten
+                    Zorten
                 </div>
                 <div className='mt-5-3 flex justify-center items-center'>
                     <Input className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow mr-2-4 out-0" placeholder='https://www.web-huudas.mn' />
@@ -21,7 +21,7 @@ export const Shortened = () => {
                     <div className='w-9-3 column'>
                         <span className='c-gray'>Given link:</span>
                         <br />
-                        <span className='c-black'>https://www.web-huudas.mn</span>
+                        <span className='c-black'>we</span>
                     </div>
                     <div className='w-9-3 column mt-2-6'>
                         <span className='c-gray'>Shortened link:</span>
