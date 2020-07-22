@@ -17,9 +17,12 @@ export const useFirebase = () => {
     const [state, setState] = useState({ firebase })
 
     useEffect(() => {
-        const app = firebase.initializeApp(config)
-        const auth = firebase.auth(app)
-        const firestore = firebase.firestore(app);
+        let app;
+        if (!firebase.apps.length){
+            app = firebase.initializeApp(config);
+        }
+        let auth = firebase.auth(app)
+        let firestore = firebase.firestore(app);
         setState({firebase, app, auth, firestore});
     }, [config]);
 

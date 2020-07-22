@@ -1,6 +1,6 @@
 import React from 'react';
-import { HomeDefault, Login, SignUp, Shortened } from './pages';
-import {AupProvider} from './providers/aup';
+import { HomeDefault, Login, SignUp, Gateway } from './pages';
+import { AupProvider } from './providers/aup';
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,10 +21,10 @@ const App = () => {
                         <Login />
                     </Route>
                     <Route path="/signup">
-                    <SignUp />
+                        <SignUp />
                     </Route>
-                    <Route path="/shortened">
-                        <Shortened />
+                    <Route path="*">
+                        <Gateway />
                     </Route>
                 </Switch>
             </Router>

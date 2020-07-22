@@ -28,6 +28,10 @@
     }
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 @for $i from 0 through 10 {
     @for $o from 0 through 10 {
         .h-#{$i}-#{$o} {

@@ -1,46 +1,50 @@
 import React, { useContext, useState } from 'react';
-import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket } from '../components';
+import { Layout, Button, Input, Link } from '../components';
 import { useHistory } from 'react-router-dom';
 import { AupContext } from '../providers/aup';
+import { useFirebase } from '../firebase';
 
 export const SignUp = () => {
     const history = useHistory();
-    const { ready, user, signUpEP } = useContext(AupContext);
+    const {auth} = useFirebase();
+    const { user } = useContext(AupContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [error, setError] = useState('')
-    const [name, setName] = useState('')
+    // const [name, setName] = useState('')
 
     const signUp = async () => {
-        if (!email || !password || !password2 || !name) {
+        if (!email || !password || !password2) {
             setError('Please enter the required fields')
             return;
         }
-        if (password2 != password) {
+        if (password2 !== password) {
             setError('Passwords do not match')
             return;
         }
-        if (password.toLowerCase() == 'password') {
+        if (password.toLowerCase() === 'password') {
             setError('Password is not a good password')
             return;
         }
 
         try {
-            await signUpEP(email, password);
+            await auth.createUserWithEmailAndPassword(email, password);
             history.push('/')
         } catch (e) {
             setError(e.message);
         }
     }
 
+    if (user) {
+        history.push('/')
+    }
+
     return (
         <Layout>
             <div className='h100 flex flex-col'>
                 <div className='flex justify-center items-center mt-2-5'>
-                    <IconStartBracket />
-                    <IconDash />
-                    <IconEndBracket />
+                    <Link/>
                 </div>
                 <div className='font-lobster c-primary fs-8-2 center'>
                     Zorten Sign Up

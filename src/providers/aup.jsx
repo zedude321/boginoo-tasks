@@ -3,11 +3,7 @@ import { useFirebase } from '../firebase'
 
 export let AupContext = createContext({
     user: null,
-    ready: false,
-    signUpEP: () => { },
-    logInEP: () => { },
-    signOut: () => { },
-    firestore: null
+    ready: false
 })
 
 export const AupProvider = ({ children }) => {
@@ -15,25 +11,21 @@ export const AupProvider = ({ children }) => {
         user: null,
         ready: false
     })
-    let { auth, firestore } = useFirebase();
-
-    const signUpEP = auth ? (email, password) => auth.createUserWithEmailAndPassword(email, password) : () => { }
-    const signInEP = auth ? (email, password) => auth.signInWithEmailAndPassword(email, password) : () => { }
-    const signOut = auth ? () => auth.signOut() : () => { }
+    let { auth } = useFirebase();
 
     useEffect(() => {
         if (!auth) {
             return;
         }
-        const subscribe = auth.onAuthStateChanged = (authUser) => {
+        const subscribe = auth.onAuthStateChanged((authUser) => {
             authUser ? setState({ ready: true, user: authUser }) : setState({ ready: false, user: null });
-        }
+        })
         return () => { subscribe() }
     }, [auth])
 
 
     return (
-        <AupContext.Provider value={{ ...state, signUpEP, signInEP, signOut, firestore }}>
+        <AupContext.Provider value={{ ...state }}>
             {children}
         </AupContext.Provider>
     )
