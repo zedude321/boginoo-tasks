@@ -69,8 +69,8 @@ export const HomeDefault = () => {
                         <div className='w-9-3 column mt-2-6'>
                             <span className='c-gray'>Shortened link:</span>
                             <br />
-                            <span className='c-black'>localhost:3000/{url}</span>
-                            <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`localhost:3000/${url}`)}}>Copy</a>
+                            <span className='c-black'>zorten.web.app/{url}</span>
+                            <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`zorten.web.app/${url}`)}}>Copy</a>
                         </div>
                     </div>
                 }
