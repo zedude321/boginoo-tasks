@@ -26,7 +26,7 @@ export const Navigation = () => {
             <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4'  >How does it work?</div>
             {user &&
                 <>
-                    <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4'>{user.email}</div>
+                    <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4' onClick={history.push('/history')}>{user.email}</div>
                     <Button className='font-ubuntu b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2 mr-2-6 mt-7-2' onClick={logOut}>Logout</Button>
                 </>
             }

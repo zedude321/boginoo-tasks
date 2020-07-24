@@ -25,6 +25,9 @@
         .br-#{$name}-#{$i} {
             border: solid $color $i + px;
         }
+        .brb-#{$name}-#{$i} {
+            border-bottom: solid $color $i + px;
+        }
     }
 }
 
@@ -45,6 +48,9 @@
         }
         .pa-#{$i}-#{$o} {
             padding: pow($i, $o) + px;
+        }
+        .pb-#{$i}-#{$o} {
+            padding-bottom: pow($i, $o) + px;
         }
         .ph-#{$i}-#{$o} {
             padding-left: pow($i, $o) + px;
@@ -102,10 +108,12 @@ body {
 }
 
 .column {
+    display: flex;
     flex-direction: column;
 }
 
 .row {
+    display: flex;
     flex-direction: row;
 }
 

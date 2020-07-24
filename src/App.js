@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeDefault, Login, SignUp, Gateway } from './pages';
+import { HomeDefault, Login, SignUp, Gateway, History } from './pages';
 import { AupProvider } from './providers/aup';
 import {
     BrowserRouter as Router,
@@ -22,6 +22,9 @@ const App = () => {
                     </Route>
                     <Route path="/signup">
                         <SignUp />
+                    </Route>
+                    <Route path="/history">
+                        <History />
                     </Route>
                     <Route path="*">
                         <Gateway />

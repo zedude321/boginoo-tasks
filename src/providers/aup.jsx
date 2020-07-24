@@ -3,13 +3,15 @@ import { useFirebase } from '../firebase'
 
 export let AupContext = createContext({
     user: null,
-    ready: false
+    ready: false,
+    hostUrl: ''
 })
 
 export const AupProvider = ({ children }) => {
     let [state, setState] = useState({
         user: null,
-        ready: false
+        ready: false,
+        hostUrl: 'localhost:3000'
     })
     let { auth } = useFirebase();
 
@@ -18,11 +20,10 @@ export const AupProvider = ({ children }) => {
             return;
         }
         const subscribe = auth.onAuthStateChanged((authUser) => {
-            authUser ? setState({ ready: true, user: authUser }) : setState({ ready: false, user: null });
+            authUser ? setState({ ready: true, user: authUser, hostUrl: state.hostUrl}) : setState({ ready: false, user: null, hostUrl: state.hostUrl });
         })
         return () => { subscribe() }
     }, [auth])
-
 
     return (
         <AupContext.Provider value={{ ...state }}>
