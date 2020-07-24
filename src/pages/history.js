@@ -22,15 +22,11 @@ export const History = () => {
                     });
                 })
         
-                console.log("======")
-                console.log(link_array)
                 setLinks(link_array);
             }
             getLinks();
         }
-    }, [firestore, user])
-
-    console.log(links)
+    }, [user])
 
     const NumberList = (props) => {
         const numbers = props.numbers;

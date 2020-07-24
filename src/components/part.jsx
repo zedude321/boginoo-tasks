@@ -14,7 +14,7 @@ export const Part = (props) => {
             </div>
             <div className='column'>
                 <label className='c-gray'>Shortened Link:</label>
-                <div className='' >{hostUrl}/{short}</div>
+                <div className=''>{hostUrl}/{short}</div>
             </div>
         </div>
     )
