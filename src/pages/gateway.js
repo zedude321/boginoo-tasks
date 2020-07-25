@@ -13,7 +13,7 @@ export const Gateway = () => {
                     if (url.includes('https://')) {
                         window.location.href = `${url}`
                     } else {
-                        window.location.href = `https://${url}`
+                        window.location.href = `https://${url}` 
                     }
                 }
             })

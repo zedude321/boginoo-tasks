@@ -11,7 +11,7 @@ export const AupProvider = ({ children }) => {
     let [state, setState] = useState({
         user: null,
         ready: false,
-        hostUrl: 'localhost:3000'
+        hostUrl: 'zorten.web.app'
     })
     let { auth } = useFirebase();
 

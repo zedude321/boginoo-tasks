@@ -20,20 +20,30 @@ export const Navigation = () => {
     const logOut = () => {
         auth.signOut()
     }
+    const goToHistory = () => {
+        history.push('/history')
+    }
+    const goToHow = () => {
+        history.push('/howItWork')
+    }
 
     return (
         <div className='w100 flex justify-end items-center'>
-            <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4'  >How does it work?</div>
+            {location.pathname !== '/howItWork' &&
+                <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4 cursor-pointer' onClick={goToHow} >How does it work?</div>
+            }
             {user &&
                 <>
-                    <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4' onClick={history.push('/history')}>{user.email}</div>
+                    {location.pathname !== '/history' &&
+                        <div className='font-ubuntu bold c-primary pa-4-2 mr-2-4 mt-7-2 fs-2-4 cursor-pointer' onClick={goToHistory}>{user.email}</div>
+                    }
                     <Button className='font-ubuntu b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2 mr-2-6 mt-7-2' onClick={logOut}>Logout</Button>
                 </>
             }
-            {(location.pathname !== '/' && location.pathname !== '/') &&
-                <Button className='font-ubuntu b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2 mr-2-6 mt-7-2' onClick={goToHome}>Home</Button>}
             {(!user && location.pathname !== '/login') &&
                 <Button className='font-ubuntu b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2 mr-2-6 mt-7-2' onClick={goToLogin}>Login</Button>}
+            {(location.pathname !== '/' && location.pathname !== '/') &&
+                <Button className='font-ubuntu b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2 mr-2-6 mt-7-2' onClick={goToHome}>Home</Button>}
         </div>
     );
 };
