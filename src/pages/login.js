@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Layout, Button, Input, Link } from '../components';
+import { Layout, Button, Input, Link, useKeyPress } from '../components';
 import { useHistory } from 'react-router-dom';
 import { AupContext } from '../providers/aup'
 import { useFirebase } from '../firebase';
@@ -40,6 +40,10 @@ export const Login = () => {
 
     if (user) {
         history.push('/')
+    }
+
+    if (useKeyPress(13)) {
+        signIn()
     }
 
     return (
