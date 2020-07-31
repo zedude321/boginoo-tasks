@@ -1,30 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Layout, Part, Link } from '../components'
+import React, { useContext, useState } from 'react'
+import shortid from 'shortid'
+import { Layout, Part, Link, Button, Input } from '../components'
 import { AupContext } from '../providers/aup'
-import { useFirebase } from '../firebase'
+import { useCollection } from '../components/useCollection'
 
 export const History = () => {
     const { user } = useContext(AupContext)
-    const { firestore } = useFirebase();
-    const [links, setLinks] = useState([]);
+    const [short, setShort] = useState('')
+    const { createRecord: createUrlsRecord } = useCollection(`urls`);
+    const { data: links , createRecord: createLinksRecord } = useCollection(`users/${user && user.uid}/links`);
+    console.log(links);
+    const shorten = async () => {
+        const id = shortid.generate()
+        if (!short) return;
 
-    useEffect(() => {
-        if (firestore && user) {
-            const getLinks = async () => {
-                let link_array = []
-                await firestore.collection('users').doc(user.uid).collection('links').get().then((d) => {
-                    d.forEach(e => {
-                        if (e.exists) {
-                            link_array.push(e.data());
-                            console.log(e.data().url)
-                        }
-                    });
-                })
-                setLinks(link_array);
-            }
-            getLinks();
+        if (user) {
+            await createLinksRecord(id, {
+                url: short,
+                shortUrl: id,
+                user: user.email
+            })
         }
-    }, [user])
+
+        await createUrlsRecord(id, {
+            url: short,
+            shortUrl: id,
+        })
+    }
 
     const NumberList = (props) => {
         const numbers = props.numbers;
@@ -41,9 +43,14 @@ export const History = () => {
             <div className='flex justify-center items-center mt-2-5'>
                 <Link></Link>
             </div>
+
             <div className='font-lobster c-primary fs-8-2 center'>
                 Zorten History
                 </div>
+            <div className='mt-5-3 flex justify-center items-center'>
+                <Input className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow mr-2-4 out-0" placeholder='https://www.web-page.com' value={short} onChange={(e) => setShort(e.target.value)} />
+                <Button className="b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2" onClick={shorten}>Shorten</Button>
+            </div>
             <div className='mt-5-3 flex justify-center items-center column'>
                 <NumberList numbers={links} />
             </div>

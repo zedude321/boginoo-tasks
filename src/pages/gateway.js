@@ -7,7 +7,7 @@ export const Gateway = () => {
     const { firestore } = useFirebase();
     useEffect(() => {
         if(firestore){
-            firestore.collection('urls').doc(location.pathname).get().then((d) => {
+            firestore.collection('urls').doc(location.pathname).then((d) => {
                 if(d.exists) {
                     const url = d.data().url;
                     if (url.includes('https://')) {
