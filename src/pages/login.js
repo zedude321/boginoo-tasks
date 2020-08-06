@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Layout, Button, Input, Link } from '../components';
+import { Layout, Button, Input, Link, useKeyPress } from '../components';
 import { useHistory } from 'react-router-dom';
 import { AupContext } from '../providers/aup'
 import { useFirebase } from '../firebase';
@@ -34,8 +34,16 @@ export const Login = () => {
         }
     }
 
+    const forgot = () => {
+        history.push('/forgotpass')
+    }
+
     if (user) {
         history.push('/')
+    }
+
+    if (useKeyPress(13)) {
+        signIn()
     }
 
     return (
@@ -53,8 +61,8 @@ export const Login = () => {
                     Password
                     <Input type={'password'} className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow out-0 mb-2-4" placeholder='••••••••••' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <div className="mb-2-5 row around w-9-3 between">
-                        <span className="font-ubuntu c-primary">▢ Remember me </span>
-                        <a href='#' className="font-ubuntu c-black"> Forgot password?</a>
+                        <span className="font-ubuntu c-primary">▢ Remember me? </span>
+                        <a href='#' className="font-ubuntu c-black" onClick={forgot}> Forgot password?</a>
                     </div>
                     <Button className="b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2" onClick={signIn}>Login</Button>
                     <a href='' onClick={goToSignUp} className='font-ubuntu mt-2-4 c-primary'>New user?</a>

@@ -1,11 +1,10 @@
 import React from 'react';
-import { HomeDefault, Login, SignUp, Gateway } from './pages';
+import { HomeDefault, Login, SignUp, Gateway, History, ForgotPass, HowItWork } from './pages';
 import { AupProvider } from './providers/aup';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 import './style/main.scss';
 
@@ -22,6 +21,15 @@ const App = () => {
                     </Route>
                     <Route path="/signup">
                         <SignUp />
+                    </Route>
+                    <Route path="/history">
+                        <History />
+                    </Route>
+                    <Route path="/forgotpass">
+                        <ForgotPass />
+                    </Route>
+                    <Route path="/howItWork">
+                        <HowItWork/>
                     </Route>
                     <Route path="*">
                         <Gateway />

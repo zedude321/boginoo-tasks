@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Layout, Button, Input, Link } from '../components';
+import { Layout, Button, Input, Link, useKeyPress } from '../components';
 import { useHistory } from 'react-router-dom';
 import { AupContext } from '../providers/aup';
 import { useFirebase } from '../firebase';
@@ -12,7 +12,6 @@ export const SignUp = () => {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [error, setError] = useState('')
-    // const [name, setName] = useState('')
 
     const signUp = async () => {
         if (!email || !password || !password2) {
@@ -38,6 +37,10 @@ export const SignUp = () => {
 
     if (user) {
         history.push('/')
+    }
+
+    if (useKeyPress(13)) {
+        signUp()
     }
 
     return (

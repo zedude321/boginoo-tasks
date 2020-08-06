@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useFirebase } from '../firebase'
 
 export const Gateway = () => {
@@ -7,13 +7,13 @@ export const Gateway = () => {
     const { firestore } = useFirebase();
     useEffect(() => {
         if(firestore){
-            firestore.collection('urls').doc(location.pathname).get().then((d) => {
+            firestore.collection('urls').doc(location.pathname).then((d) => {
                 if(d.exists) {
                     const url = d.data().url;
                     if (url.includes('https://')) {
                         window.location.href = `${url}`
                     } else {
-                        window.location.href = `https://${url}`
+                        window.location.href = `https://${url}` 
                     }
                 }
             })

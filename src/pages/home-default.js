@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import shortid from 'shortid'
-import { Layout, Button, Input, Link } from '../components/';
+import { Layout, Button, Input, Link, useKeyPress } from '../components/';
 import { AupContext } from '../providers/aup'
 import { useFirebase } from '../firebase';
 import copy from 'copy-to-clipboard'
 
 export const HomeDefault = () => {
-    let { user } = useContext(AupContext);
+    let { user, hostUrl } = useContext(AupContext);
     const [zort, setZort] = useState(false);
     const [url, setUrl] = useState('')
     const { firestore } = useFirebase();
@@ -44,6 +44,10 @@ export const HomeDefault = () => {
         }
     }
 
+    if (useKeyPress(13)) {
+        shorten()
+    }
+
     return (
         <Layout>
             <div className='h100 flex flex-col'>
@@ -67,8 +71,10 @@ export const HomeDefault = () => {
                         <div className='w-9-3 column mt-2-6'>
                             <span className='c-gray'>Shortened link:</span>
                             <br />
-                            <span className='c-black'>zorten.web.app/{url}</span>
-                            <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`zorten.web.app/${url}`)}}>Copy</a>
+                            <div className='row w100'>
+                                <span className='c-black'>{hostUrl}/{url}</span>
+                                <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`${hostUrl}/${url}`)}}>Copy</a>
+                            </div>
                         </div>
                     </div>
                 }

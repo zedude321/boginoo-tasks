@@ -3,16 +3,13 @@ import { Navigation } from './';
 
 export const Layout = ({ children }) => {
     return (
-        <div className='flex flex-col items-center pa-3' style={{ width: '100vw', height: '100vh' }}>
-            {/* NAVIGATION */}
+        <div className='flex flex-col items-center pa-3 vhw'>
             <Navigation />
 
-            {/* MAIN CONTENT */}
             <div className='w100 flex-1'>
                 {children}
             </div>
 
-            {/* FOOTER */}
                 <div className='font-ubuntu '>
                     Made with ♥️ by Nest Academy
                 </div>
