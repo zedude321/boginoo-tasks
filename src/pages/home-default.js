@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react';
 import shortid from 'shortid'
 import { Layout, Button, Input, Link } from '../components/';
-// import { useHistory } from 'react-router-dom';
 import { AupContext } from '../providers/aup'
 import { useFirebase } from '../firebase';
 import copy from 'copy-to-clipboard'
 
 export const HomeDefault = () => {
-    // const history = useHistory()
     let { user } = useContext(AupContext);
     const [zort, setZort] = useState(false);
     const [url, setUrl] = useState('')
@@ -49,15 +47,15 @@ export const HomeDefault = () => {
     return (
         <Layout>
             <div className='h100 flex flex-col'>
-                <div className='flex justify-center items-center mt-2-5'>
+                <div className='flex justify-center items-center mt-2-4'>
                     <Link></Link>
                 </div>
                 <div className='font-lobster c-primary fs-8-2 center'>
                     Zorten
                 </div>
-                <div className='mt-5-3 flex justify-center items-center'>
+                <div className='mt-4-3 flex justify-center items-center'>
                     <Input className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow mr-2-4 out-0" placeholder='https://www.web-page.com' value={short} onChange={(e) => setShort(e.target.value)} />
-                    <Button className="b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2" onClick={shorten}>Shorten</Button>
+                    <Button className="b-primary c-default br-primary-0 brr fs-2-4 pa-4-2" onClick={shorten}>Shorten</Button>
                 </div>
                 {zort &&
                     <div className='mt-4-3 flex justify-center items-center font-ubuntu column'>

@@ -43,13 +43,13 @@ export const SignUp = () => {
     return (
         <Layout>
             <div className='h100 flex flex-col'>
-                <div className='flex justify-center items-center mt-2-5'>
+                <div className='flex justify-center items-center mt-2-4'>
                     <Link/>
                 </div>
                 <div className='font-lobster c-primary fs-8-2 center'>
                     Zorten Sign Up
                 </div>
-                <div className='mt-5-3 flex justify-center items-center column font-ubuntu'>
+                <div className='mt-4-3 flex justify-center items-center column font-ubuntu'>
                     Email
                     <Input className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow out-0 mb-2-4" placeholder='name@mail.domain' value={email} onChange={(e) => setEmail(e.target.value)} />
                     Password
