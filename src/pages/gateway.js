@@ -5,9 +5,12 @@ import { useFirebase } from '../firebase'
 export const Gateway = () => {
     const location = useLocation();
     const { firestore } = useFirebase();
+    const path = location.pathname.slice(1)
+    console.log(path)
     useEffect(() => {
         if(firestore){
-            firestore.collection('urls').doc(location.pathname).then((d) => {
+            firestore.collection('urls').doc(path).get()
+            .then((d) => {
                 if(d.exists) {
                     const url = d.data().url;
                     if (url.includes('https://')) {
@@ -18,7 +21,7 @@ export const Gateway = () => {
                 }
             })
         }
-    }, [firestore])
+    }, [firestore, location])
     return (<>
         </>)
 }

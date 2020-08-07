@@ -40,14 +40,14 @@ export const History = () => {
 
     return (<Layout>
         <div className='h100 flex flex-col'>
-            <div className='flex justify-center items-center mt-2-5'>
+            <div className='flex justify-center items-center mt-2-4'>
                 <Link></Link>
             </div>
 
             <div className='font-lobster c-primary fs-8-2 center'>
                 Zorten History
                 </div>
-            <div className='mt-5-3 flex justify-center items-center'>
+            <div className='mt-4-3 flex justify-center items-center'>
                 <Input className="w-9-3 fs-2-4 pa-4-2 br-primary-0 shadow mr-2-4 out-0" placeholder='https://www.web-page.com' value={short} onChange={(e) => setShort(e.target.value)} />
                 <Button className="b-primary c-default br-primary-0 h-5 brr fs-2-4 pa-4-2" onClick={shorten}>Shorten</Button>
             </div>

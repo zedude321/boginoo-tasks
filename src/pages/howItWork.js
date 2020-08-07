@@ -36,13 +36,13 @@ export const HowItWork = () => {
     return (
         <Layout>
             <div className='h100 flex flex-col'>
-                <div className='flex justify-center items-center mt-2-5'>
+                <div className='flex justify-center items-center mt-2-4'>
                     <Link></Link>
                 </div>
                 <div className='font-lobster c-primary fs-8-2 center'>
                     Zorten: How Does It Work?
                 </div>
-                <div className='mt-5-3 flex justify-center items-center fs-7-2 font-ubuntu c-primary'>
+                <div className='mt-4-3 flex justify-center items-center fs-7-2 font-ubuntu c-primary'>
                     {text}
                 </div>
             </div>

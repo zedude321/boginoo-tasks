@@ -16,32 +16,18 @@ export const HomeDefault = () => {
     const shorten = async () => {
         const id = shortid.generate()
         if (short && user) {
-            await firestore.collection("urls").doc(id).set({
-                url: short,
-                shortUrl: id,
-                user: user.email
-            })
             await firestore.doc(`users/${user.uid}/links/${id}`).set({
                 url: short,
                 shortUrl: id
             })
-            setThing(short)
-            setZort(true)
-            setUrl(id)
         }
-        if (short && !user) {
-            await firestore.collection("urls").doc(id).set({
-                url: short,
-                shortUrl: id,
-            })
-            if(short.includes('https://www.')) {
-                setThing(short)
-            } else {
-                setThing(`https://www.${short}`)
-            }
-            setZort(true)
-            setUrl(id)
-        }
+        await firestore.collection("urls").doc(id).set({
+            url: short,
+            shortUrl: id
+        })
+        setThing(short)
+        setZort(true)
+        setUrl(id)
     }
 
     if (useKeyPress(13)) {
@@ -73,7 +59,7 @@ export const HomeDefault = () => {
                             <br />
                             <div className='row w100'>
                                 <span className='c-black'>{hostUrl}/{url}</span>
-                                <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`${hostUrl}/${url}`)}}>Copy</a>
+                                <a className='c-primary ml-2-5 cursor-pointer' onClick={() => { copy(`${hostUrl}/${url}`) }}>Copy</a>
                             </div>
                         </div>
                     </div>
